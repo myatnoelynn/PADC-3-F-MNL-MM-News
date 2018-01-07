@@ -2,6 +2,8 @@ package com.padcmyanmar.news.data.models;
 
 import com.padcmyanmar.news.network.HttpUrlConnectionDataAgent;
 import com.padcmyanmar.news.network.NewsDataAgent;
+import com.padcmyanmar.news.network.RetrofitDataAgent;
+import com.padcmyanmar.news.network.responses.OKHttpDataAgent;
 
 /**
  * Created by NB-MM-HQ-MNL on 12/23/2017.
@@ -14,7 +16,9 @@ public class NewsModel {
     private static NewsModel sObjInstance;
 
     private NewsModel() {
-        mDataAgent= HttpUrlConnectionDataAgent.getsDataAgent();
+        //mDataAgent= HttpUrlConnectionDataAgent.getsDataAgent();
+        //mDataAgent= OKHttpDataAgent.getsObjInstance();
+        mDataAgent = RetrofitDataAgent.getsObjectInstance();
     }
 
     public static NewsModel getsObjInstance() {
