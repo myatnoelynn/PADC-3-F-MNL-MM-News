@@ -53,8 +53,8 @@ public class NewsAdapter extends RecyclerView.Adapter<ItemNewsViewHolder> {
         return mNewsList.size();
     }
 
-    public void setNews(List<NewsVO> newsList){
-        mNewsList=newsList;
+    public void setNews(List<NewsVO> newsList) {
+        mNewsList = newsList;
         notifyDataSetChanged(); // data changes
     }
 }

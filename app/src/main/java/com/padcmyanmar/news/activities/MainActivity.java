@@ -1,9 +1,14 @@
 package com.padcmyanmar.news.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,6 +44,12 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
     @BindView(R.id.fab)
     FloatingActionButton fActionButton;
 
+    @BindView(R.id.navigation_view)
+    NavigationView navigationView;
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
+
     private NewsAdapter mNewsAdapter;
 
     @Override
@@ -63,7 +74,37 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
 
         rvNews.setAdapter(mNewsAdapter);
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+              /*  item.setChecked(true);
+                Intent intent = NewsByCategoryActivity.newIntent(getApplicationContext());
+                startActivity(intent);*/
+                if (item.getItemId() == R.id.menu_news_by_categories) {
+
+                    item.setChecked(true);
+                    Intent intent = NewsByCategoryActivity.newIntent(getApplicationContext());
+                    startActivity(intent);
+
+                } else if ((item.getItemId() == R.id.menu_all_news)) {
+                    item.setChecked(true);
+                    Intent intent = MainActivity.newIntent(getApplicationContext());
+                    startActivity(intent);
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return false;
+
+            }
+        });
+
         NewsModel.getsObjInstance().loadNews();
+
+
+    }
+
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
     }
 
     @Override
@@ -128,9 +169,9 @@ public class MainActivity extends AppCompatActivity implements NewsActionDelegat
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onNewsLoaded(LoadedNewsEvent event){
+    public void onNewsLoaded(LoadedNewsEvent event) {
 
-        Log.d(MMNewsApp.LOG_TAG,"onNewsLoaded : " +event.getNewsVOList().size());
+        Log.d(MMNewsApp.LOG_TAG, "onNewsLoaded : " + event.getNewsVOList().size());
         mNewsAdapter.setNews(event.getNewsVOList());
     }
 

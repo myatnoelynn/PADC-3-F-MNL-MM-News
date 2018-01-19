@@ -7,7 +7,10 @@ package com.padcmyanmar.news.delegates;
 public interface NewsActionDelegate {
 
     void onTapNewsItem();
+
     void onTapCommentButton();
+
     void onTapSendToButton();
+
     void onTapFavoriteButton();
 }

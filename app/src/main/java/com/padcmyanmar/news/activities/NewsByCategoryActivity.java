@@ -1,5 +1,7 @@
 package com.padcmyanmar.news.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -7,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 
 
 import com.padcmyanmar.news.MMNewsApp;
@@ -59,13 +62,13 @@ public class NewsByCategoryActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        mNewsByCategoryAdapter=new NewsByCategoryAdapter(getSupportFragmentManager());
+        mNewsByCategoryAdapter = new NewsByCategoryAdapter(getSupportFragmentManager());
 
         vpNewsByCategory.setAdapter(mNewsByCategoryAdapter);
 
-        mNewsByCategoryAdapter.addTab("Local News",new NewsByCategoryFragment());
-        mNewsByCategoryAdapter.addTab("International News",new InternationalNewsFragment());
-        mNewsByCategoryAdapter.addTab("Sport News",new SportsNewsFragment());
+        mNewsByCategoryAdapter.addTab("Local News", new NewsByCategoryFragment());
+        mNewsByCategoryAdapter.addTab("International News", new InternationalNewsFragment());
+        mNewsByCategoryAdapter.addTab("Sport News", new SportsNewsFragment());
 
         tbNewsByCategory.setupWithViewPager(vpNewsByCategory);
 
@@ -73,7 +76,19 @@ public class NewsByCategoryActivity extends AppCompatActivity {
 
     }
 
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, NewsByCategoryActivity.class);
+        return intent;
+    }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (menuItem.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(menuItem);
+    }
 
 
 }

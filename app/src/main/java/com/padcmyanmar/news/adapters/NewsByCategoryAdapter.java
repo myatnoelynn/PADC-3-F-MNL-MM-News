@@ -19,6 +19,7 @@ public class NewsByCategoryAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> mFragments;
     private List<String> mTabTitles;
     private List<NewsVO> mNewsList;
+
     @Override
     public Fragment getItem(int position) {
         return mFragments.get(position);
@@ -31,18 +32,18 @@ public class NewsByCategoryAdapter extends FragmentStatePagerAdapter {
 
     public NewsByCategoryAdapter(FragmentManager fm) {
         super(fm);
-        mFragments=new ArrayList<>();
-        mTabTitles=new ArrayList<>();
+        mFragments = new ArrayList<>();
+        mTabTitles = new ArrayList<>();
     }
 
-    public void addTab(String tabTitle,Fragment fragment){
+    public void addTab(String tabTitle, Fragment fragment) {
         mTabTitles.add(tabTitle);
         mFragments.add(fragment);
         notifyDataSetChanged();
     }
 
-    public void setNews(List<NewsVO> newsList){
-        mNewsList=newsList;
+    public void setNews(List<NewsVO> newsList) {
+        mNewsList = newsList;
         notifyDataSetChanged(); // data changes
     }
 

@@ -38,7 +38,7 @@ public class ImagesInNewsDetailsAdapter extends PagerAdapter {
         Context context = container.getContext();
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         ImageInNewsDetailsViewItems view = (ImageInNewsDetailsViewItems)
-        layoutInflater.inflate(R.layout.item_new_details_images, container, false);
+                layoutInflater.inflate(R.layout.item_new_details_images, container, false);
         container.addView(view); //to show
         return view;
 
@@ -46,6 +46,6 @@ public class ImagesInNewsDetailsAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((View)object);
+        container.removeView((View) object);
     }
 }

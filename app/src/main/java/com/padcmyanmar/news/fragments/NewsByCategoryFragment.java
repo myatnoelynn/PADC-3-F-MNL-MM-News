@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  * Created by NB-MM-HQ-MNL on 1/7/2018.
  */
 
-public class NewsByCategoryFragment extends Fragment implements NewsActionDelegate{
+public class NewsByCategoryFragment extends Fragment implements NewsActionDelegate {
 
     @BindView(R.id.rv_news_by_category)
     RecyclerView rvNewsByCategory;
@@ -39,13 +39,13 @@ public class NewsByCategoryFragment extends Fragment implements NewsActionDelega
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news_by_category,container,false); //second parameter - object that inflated by layout file
-        ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_news_by_category, container, false); //second parameter - object that inflated by layout file
+        ButterKnife.bind(this, view);
 
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, true);
         rvNewsByCategory.setLayoutManager(linearLayoutManager);
 
-        mNewsByCategoryAdapter=new NewsAdapter(this);
+        mNewsByCategoryAdapter = new NewsAdapter(this);
         rvNewsByCategory.setAdapter(mNewsByCategoryAdapter);
 
         NewsModel.getsObjInstance().loadNews();
@@ -69,11 +69,12 @@ public class NewsByCategoryFragment extends Fragment implements NewsActionDelega
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onNewsLoaded(LoadedNewsEvent event){
+    public void onNewsLoaded(LoadedNewsEvent event) {
 
-        Log.d(MMNewsApp.LOG_TAG,"onNewsLoaded : " +event.getNewsVOList().size());
+        Log.d(MMNewsApp.LOG_TAG, "onNewsLoaded : " + event.getNewsVOList().size());
         mNewsByCategoryAdapter.setNews(event.getNewsVOList());
     }
+
     @Override
     public void onTapNewsItem() {
 

@@ -39,46 +39,44 @@ public class ItemNewsViewHolder extends RecyclerView.ViewHolder {
 
     public NewsActionDelegate mNewsActionDelegate;
 
-    public ItemNewsViewHolder(View v, NewsActionDelegate newsActionDelegate){
+    public ItemNewsViewHolder(View v, NewsActionDelegate newsActionDelegate) {
         super(v);
-        ButterKnife.bind(this,itemView);
+        ButterKnife.bind(this, itemView);
 
         mNewsActionDelegate = newsActionDelegate;
     }
 
     @OnClick(R.id.cv_news_item_root)
-    public void onTapNewItem(View v){
+    public void onTapNewItem(View v) {
         mNewsActionDelegate.onTapNewsItem();
     }
 
     @OnClick(R.id.btn_comment)
-    public void onTapCommentButton(View v){
+    public void onTapCommentButton(View v) {
         mNewsActionDelegate.onTapCommentButton();
     }
 
-    public  void setNews(NewsVO newsVO){
+    public void setNews(NewsVO newsVO) {
         tvPublicationTitle.setText(newsVO.getPublication().getTitle());
         tvPostedDate.setText(newsVO.getPostedDate());
         tvNewsBrief.setText(newsVO.getBrief());
 
 
         Glide.with(ivPublicationLogo.getContext())
-            .load(newsVO.getPublication().getLogo())
-            .into(ivPublicationLogo);
+                .load(newsVO.getPublication().getLogo())
+                .into(ivPublicationLogo);
 
 
-        if(newsVO.getImages()!=null) {
+        if (newsVO.getImages() != null) {
             ivNews.setVisibility(View.VISIBLE);
             Glide.with(ivNews.getContext())
                     .load(newsVO.getImages().get(0))
                     .into(ivNews);
-        }else
-        {
+        } else {
             ivNews.setVisibility(View.GONE);
         }
 
     }
-
 
 
 }

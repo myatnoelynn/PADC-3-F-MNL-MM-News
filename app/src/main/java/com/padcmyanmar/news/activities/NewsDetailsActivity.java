@@ -36,10 +36,10 @@ public class NewsDetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this, this);
 
         setSupportActionBar(toolbar_details);
-        ActionBar actionBar=getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
 
-        imagesInNewsDetailsAdaper=new ImagesInNewsDetailsAdapter();
+        imagesInNewsDetailsAdaper = new ImagesInNewsDetailsAdapter();
 
         vp_new_details_images.setAdapter(imagesInNewsDetailsAdaper);
 
